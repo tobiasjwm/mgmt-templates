@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Carbonite automated install and enrollment using directory device integration
+## VARIABLES - CHANGE THESE ##
+aCode="REPLACE"
+eMail="devices@REPLACE.com"
+pkgPath="$3/DCProtect-10.3.0.31-Carbonite.pkg"
+
+# Run the installer
+/usr/sbin/installer -pkg "$pkgPath" -tgt /
+
+# Run the activation
+"/Library/Application Support/DCProtect/DCProtect.app/Contents/MacOS/DCProtect" \
+	-autoactivation \
+	-activationCode="$aCode" \
+	-activationUrl=red-us.mysecuredatavault.com \
+	-email="$eMail"
+
+# Clean up because the vendor cannot deliver on its promises
+if [ -e "$pkgPath" ]; then
+    # pkg is present, remove it
+	/bin/rm -rf "$pkgPath"
+fi

@@ -1,0 +1,10 @@
+<AutoConfig>
+	<InstallDesktopShortcut>0</InstallDesktopShortcut>
+	<Silent>1</Silent>
+	<RunActivatePostInstall>1</RunActivatePostInstall>
+	<StartClientPostActivate>0</StartClientPostActivate>
+	<PassphraseRequired>0</PassphraseRequired>
+	<ProxyAutoDetect>0</ProxyAutoDetect>
+	<ProxyScript/>
+	<ProxyServer/>
+</AutoConfig>

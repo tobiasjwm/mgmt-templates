@@ -1,0 +1,39 @@
+#!/bin/sh
+
+## EDIT THESE VARIABLES TO YOUR VALUES ##
+# The identifier of the Systems Manager package
+SM_PKG_ID="com.REPLACE.gmit_meraki_sm_mdm"
+
+# Name of the Systems Manager enrollment profile
+SM_CONFIG="REPLACE_meraki_sm_mdm.mobileconfig"
+
+# Name of the Mosyle enrollment profile
+ML_CONFIG="REPLACE-mosyle_enrollment.mobileconfig"
+
+## LEAVE THESE VARIABLES ALONE ##
+# The identifier of the Systems Manager profile
+SM_PROFILE_ID="com.meraki.sm.mdm"
+
+# Install location for enrollment profiles
+INSTALL_PATH="/usr/local/share"
+
+# Full path to Systems Manager profile
+SM_PATH="$INSTALL_PATH/$SM_CONFIG"
+
+# Full path to Systems Manager profile
+ML_PATH="$INSTALL_PATH/$ML_CONFIG"
+
+## CALL IN THE ROBOTS ##
+# Check for Meraki profile and remove it if it exists
+if ( /usr/bin/profiles -P | /usr/bin/grep -q $SM_PROFILE_ID ); then
+    # Profile is present, remove it
+	/usr/bin/profiles -R -p $SM_PROFILE_ID
+	/bin/rm -f $SM_PATH
+	/usr/sbin/pkgutil --forget $SM_PKG_ID
+fi
+
+##reset DEP settings for devices 10.13.4 and above
+/usr/bin/profiles renew -type enrollment
+
+#install enrollment profile
+/usr/bin/profiles -I -F $ML_PATH

@@ -1,44 +1,40 @@
-{ 
-  "homepage" : "http://daringfireball.net/", 
-  "homepage_is_newtabpage" : false, 
-  "browser" : { 
-    "show_home_button" : true, 
-    "check_default_browser" : false
+{
+  "homepage": "https://globalmacit.zendesk.com/",
+  "homepage_is_newtabpage": false,
+  "browser": {
+    "show_home_button": true
   },
-  "session" : {
-    "urls_to_restore_on_startup" : [
-      "http://daringfireball.net/"
+  "session": {
+    "restore_on_startup": 4,
+    "startup_urls": [
+      "https://globalmacit.zendesk.com/"
     ]
   },
-  "bookmark_bar" : { 
-    "show_on_all_tabs" : true 
-  }, 
-  "distribution" : {
-    "auto_launch_chrome": false,
-    "chrome": true,
+  "bookmark_bar": {
+    "show_on_all_tabs": true
+  },
+  "sync_promo": {
+    "show_on_first_run_allowed": false
+  },
+  "distribution": {
     "import_bookmarks": false,
+    "import_bookmarks_from_file": "/Library/Google/bookmarks.html",
+    "import_history": false,
+    "import_home_page": false,
+    "import_search_engine": true,
     "ping_delay": 60,
-    "show_welcome_page": false,
-    "skip_first_run_ui": true,
-    "suppress_first_run_bubble": true,
-    "do_not_create_desktop_shortcut": true,
-    "do_not_create_quick_launch_shortcut": true,
-    "do_not_launch_chrome": true,
+	"show_welcome_page": false,
+	"skip_first_run_ui": true,
+	"suppress_first_run_bubble": true,
     "do_not_register_for_update_launch": true,
-    "log_file": "log.txt",
-    "make_chrome_default": false,
-    "make_chrome_default_for_user": false,
+    "make_chrome_default": true,
+    "make_chrome_default_for_user": true,
     "suppress_first_run_default_browser_prompt": true,
-    "multi_install": true,
-    "require_eula": false,
     "system_level": true,
     "verbose_logging": true
-  }, 
-  "sync_promo" : {
-  	"user_skipped" : true
   },
   "first_run_tabs" : [
-  	"http://daringfireball.net/",
+        "https://globalmacit.zendesk.com/",
         "http://globalmacit.com/training/"
   ]
 }
