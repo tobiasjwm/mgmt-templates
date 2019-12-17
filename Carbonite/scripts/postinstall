@@ -4,7 +4,7 @@
 ## VARIABLES - CHANGE THESE ##
 aCode="REPLACE"
 eMail="devices@REPLACE.com"
-pkgPath="$3/DCProtect-10.3.0.31-Carbonite.pkg"
+pkgPath="$3/DCProtect-10.3.5.236-CarboniteUSRed.pkg"
 
 # Run the installer
 /usr/sbin/installer -pkg "$pkgPath" -tgt /
