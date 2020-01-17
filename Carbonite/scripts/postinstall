@@ -4,13 +4,19 @@
 ## VARIABLES - CHANGE THESE ##
 aCode="REPLACE"
 eMail="devices@REPLACE.com"
-pkgPath="$3/DCProtect-10.3.5.236-CarboniteUSRed.pkg"
+pkgPath="$3/tmp/DCProtect-10.3.5.236-CarboniteUSRed.pkg"
+minorVers=$(sw_vers -productVersion | awk -F '.' '{print $2}')
+
+# Check the version and move the XML file to / if OS is < 10.15
+if [ $minorVers -lt 15 ] ; then
+	/bin/mv -f "$3/Library/LocalAutoConfig.xml" "$3/LocalAutoConfig.xml"
+fi
 
 # Run the installer
 /usr/sbin/installer -pkg "$pkgPath" -tgt /
 
 # Run the activation
-"/Library/Application Support/DCProtect/DCProtect.app/Contents/MacOS/DCProtect" \
+"$3/Applications/Carbonite Endpoint.app/Contents/DCProtect/DCProtect.app/Contents/MacOS/DCProtect" \
 	-autoactivation \
 	-activationCode="$aCode" \
 	-activationUrl=red-us.mysecuredatavault.com \
