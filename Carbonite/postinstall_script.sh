@@ -1,14 +1,14 @@
-#!/bin/bash
+#!/bin/sh
 
 # Carbonite automated install and enrollment using directory device integration
 ## VARIABLES - CHANGE THESE ##
 aCode="REPLACE"
-eMail="devices@REPLACE.com"
+eMail="REPLACE"
 pkgPath="$3/tmp/DCProtect-10.3.5.236-CarboniteUSRed.pkg"
 minorVers=$(sw_vers -productVersion | awk -F '.' '{print $2}')
 
 # Check the version and move the XML file to / if OS is < 10.15
-if [ $minorVers -lt 15 ] ; then
+if [ "$minorVers" -lt 15 ] ; then
 	/bin/mv -f "$3/Library/LocalAutoConfig.xml" "$3/LocalAutoConfig.xml"
 fi
 
@@ -22,7 +22,7 @@ fi
 	-activationUrl=red-us.mysecuredatavault.com \
 	-email="$eMail"
 
-# Clean up because the vendor cannot deliver on its promises
+# Clean up
 if [ -e "$pkgPath" ]; then
     # pkg is present, remove it
 	/bin/rm -rf "$pkgPath"

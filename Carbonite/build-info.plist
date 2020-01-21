@@ -9,7 +9,7 @@
 	<key>install_location</key>
 	<string>/</string>
 	<key>name</key>
-	<string>REPLACE-Carbonite-${version}.pkg</string>
+	<string>custom_Carbonite-${version}.pkg</string>
 	<key>ownership</key>
 	<string>recommended</string>
 	<key>postinstall_action</key>
