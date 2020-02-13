@@ -1,4 +1,38 @@
-#!/bin/bash
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>OnDemand</key>
+	<true/>
+	<key>_metadata</key>
+	<dict>
+		<key>created_by</key>
+		<string>tobias</string>
+		<key>creation_date</key>
+		<date>2020-02-13T19:42:34Z</date>
+		<key>munki_version</key>
+		<string>3.6.3.3784</string>
+		<key>os_version</key>
+		<string>10.15.3</string>
+	</dict>
+	<key>autoremove</key>
+	<false/>
+	<key>catalogs</key>
+	<array>
+		<string>testing</string>
+	</array>
+	<key>description</key>
+	<string>This on-demand action will remove all items from your Dock and add Google Chrome, Safari, the Microsoft Office Suite and Managed Software Center. The action can be run as many times as you need.</string>
+	<key>display_name</key>
+	<string>Office Dock</string>
+	<key>category</key>
+	<string>Self Service</string>
+	<key>developer</key>
+	<string>Tobias Morrison</string>
+    <key>installer_type</key>
+    <string>nopkg</string>
+	<key>postinstall_script</key>
+	<string>>#!/bin/bash
 
 loggedInUser=$(python -c 'from SystemConfiguration import SCDynamicStoreCopyConsoleUser; import sys; username = (SCDynamicStoreCopyConsoleUser(None, None, None) or [None])[0]; username = [username,""][username in [u"loginwindow", None, u""]]; sys.stdout.write(username + "\n");')
 dockutil=$(sudo -u "$loggedInUser" /usr/local/bin/dockutil)
@@ -20,4 +54,16 @@ fi
 "$dockutil" --add '/Applications/Microsoft Outlook.app' /Users/"$loggedInUser" --no-restart
 "$dockutil" --add '/Applications/Managed Software Center.app' /Users/"$loggedInUser" --no-restart
 "$dockutil" --add '~/Downloads' --display stack /Users/"$loggedInUser"
-killall Dock
+killall Dock</string>
+	<key>name</key>
+	<string>office_dock</string>
+	<key>minimum_os_version</key>
+	<string>10.12.0</string>
+	<key>requires</key>
+	<array>
+		<string>dockutil</string>
+	</array>
+	<key>version</key>
+	<string>1.0</string>
+</dict>
+</plist>
