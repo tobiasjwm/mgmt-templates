@@ -25,6 +25,8 @@
 	<string>This on-demand action will remove all items from your Dock and add Google Chrome, Safari, the Microsoft Office Suite and Managed Software Center. The action can be run as many times as you need.</string>
 	<key>display_name</key>
 	<string>Office Dock</string>
+	<key>icon_name</key>
+	<string>Dock_catalina.png</string>
 	<key>category</key>
 	<string>Self Service</string>
 	<key>developer</key>
