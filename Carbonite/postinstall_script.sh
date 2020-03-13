@@ -4,7 +4,8 @@
 ## VARIABLES - CHANGE THESE ##
 aCode="REPLACE"
 eMail="REPLACE"
-pkgPath="$3/tmp/DCProtect-10.3.5.236-CarboniteUSRed.pkg"
+## Static variables. DO NOT CHANGE ##
+pkgPath="$3/tmp/DCProtectInstall-10.4.0.51.pkg"
 minorVers=$(sw_vers -productVersion | awk -F '.' '{print $2}')
 
 # Check the version and move the XML file to / if OS is < 10.15

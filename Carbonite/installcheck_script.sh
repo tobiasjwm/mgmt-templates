@@ -1,8 +1,6 @@
 #!/bin/sh
-
-carbonitePkg=$(pkgutil --pkgs | grep DCProtect)
-
-if [ "$carbonitePkg" = com.dataprotection.DCProtect ] ; then
+# sanity check to prevent custom install over existing installation.
+if [ -f "/Library/LaunchDaemons/com.dataprotection.protectionservice.plist" ]; then
 	echo "Carbonite already installed. Skipping custom install."
 	exit 1
 else
