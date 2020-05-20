@@ -1,14 +1,34 @@
 # Carbonite Custom Installer
 
-This template is created to build a custom installer for Carbonite mass-deployment using the _directory device integration_ method to apply backup to all company Macs generically. The generated installer itself is non-functional, but allows for the creation of client installers by duplicating the Munki pkgsinfo file and replacing the **Activation Code** (variable `aCode`) and **Email** (variable `eMail`) with the client's unique items.
+This template is created to build a custom installer for Carbonite mass-deployment using the _directory device integration_ method to apply backup to all company Macs generically. The generated installer itself is non-functional, but allows for the creation of client installers by duplicating the Munki pkginfo file and replacing the **Activation Code** (variable `aCode`) and **Email** (variable `eMail`) with the client's unique items.
 
-To build the pkg, you must have [munkipkg](https://github.com/munki/munki-pkg) installed.
+You can obtain the GA version of the Carbonite installer by opening a Device Record in the Carbonite Dashboard and clicking **Help activating account**.
+
+To determine the version number, open the pkg in [Suspicious Package](https://mothersruin.com/software/SuspiciousPackage/).
+
+1. Go to All Files tab and select LocalServiceSettings.config.xml
+2. Right-click on the file and choose **Open with > BBEdit** (or your editor of choice)
+3. Grab the value from the **ClientVersion** key
+
+Once you have your pkg, drop it into the **payload/tmp** folder.
+
+## Building the custom pkg
+
+*To build the pkg, you must have [munkipkg](https://github.com/munki/munki-pkg) installed.*
+
+Before building the pkg, open the **build-info.plist** and update the version number.
 
 Run the following command to build the pkg:
 
-	munkiimport /Users/Shared/src/mgmt-templates/Carbonite/build/custom_Carbonite-10.3.5.pkg \
-	--installcheck_script=/Users/Shared/src/mgmt-templates/Carbonite/installcheck_script.sh \
-	--postinstall_script=/Users/Shared/src/mgmt-templates/Carbonite/postinstall_script.sh \
+	munkipkg /path/to/project.folder
+
+## Import the pkg into Munki
+
+Run the following command to import the pkg into Munki:
+
+	munkiimport /path/to/project.folder/build/custom_Carbonite-x.x.x.pkg \
+	--installcheck_script=/path/to/project.folder/installcheck_script.sh \
+	--postinstall_script=/path/to/project.folder/postinstall_script.sh \
 	--minimum_os_version=10.10.5
 
 Don't forget to add an icon so it looks nice in Managed Software Center.
